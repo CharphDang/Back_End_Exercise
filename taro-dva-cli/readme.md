@@ -13,4 +13,4 @@ or 直接使用
 
 1. `npx @charphdang/taro-cli init <project name> `
 
-**请注意： **将`<project name>`替换成自己实际项目的名称
+**请注意：**将`<project name>`替换成自己实际项目的名称
