@@ -7,11 +7,8 @@
 **使用方法：**
 
 1. `npm install @charphdang/taro-cli -g`
-2. `taro-dva-cli init <project name>`
+2. `taro-cli init <project name>`
 
-or 直接使用
-
-1. `npx @charphdang/taro-cli init <project name> `
 
 **请注意：**
 
