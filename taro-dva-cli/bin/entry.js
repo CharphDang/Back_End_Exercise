@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 // * 指定脚本解释器为node
-console.log(123) // Charph-log
 const program = require('commander')
 program.version(require('../package').version)
 

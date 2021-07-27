@@ -1,10 +1,10 @@
 {
-  "name": "taro-dva-cli",
+  "name": "@charphdang/taro-cli",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./bin/entry.js",
   "license": "MIT",
   "bin": {
-    "kkb": "./bin/kkb.js"
+    "taro-dva-cli": "./bin/entry.js"
   },
   "dependencies": {
     "chalk": "^4.1.1",

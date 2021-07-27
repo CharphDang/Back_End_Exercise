@@ -1,51 +1,50 @@
-// * 这是一个内置工具库中的函数， 用来将方法的返回值变成Promise类型
-const { promisify } = require('util')
-// * 使用figlet 工具可以将message 转化为空心的字体， 一般用来制作程序启动时的banner
-const figlet = promisify(require('figlet'))
-// * 清屏
-const clear = require('clear')
-// * 控制台打印彩色字体
-const chalk = require('chalk')
-// * 封装log方法，打印绿色字体
-const log = content => console.log(chalk.green(content))
-
+const { figlet, clear, log, logError, spawn } = require('./utils')
 const { clone } = require('./download')
 
-// promisiy化spawn
-// 对接输出流
-const spawn = async (...args) => {
-  const { spawn } = require('child_process')
-  return new Promise(resolve => {
-    const proc = spawn(...args)
-    proc.stdout.pipe(process.stdout)
-    proc.stderr.pipe(process.stderr)
-    proc.on('close', () => {
-      resolve()
-    })
-  })
-}
+const GIT_LAB_URL = 'direct:https://gitee.com/chaofengdang/taro-dva-template.git'
 
 module.exports = async name => {
   // 打印欢迎画面
   clear()
-  const data = await figlet('KKB Welcome')
+  const data = await figlet('Taro Dva')
   log(data)
-  log('Create Project:' + name)
-  // await clone('https://gitee.com/chaofengdang/taro-dva-template.git', name)
-  log('Download Template Success')
+  log('🚀 Create Project:' + name)
+  try {
+    await clone(GIT_LAB_URL, name, { clone: true })
+  } catch (error) {
+    logError(error, 'err') // Charph-log
+    return
+  }
+
+  log('⬇️  Download Template Success')
 
   // ------------------------------------
 
-  log('安装依赖')
-  await spawn('npm', ['install'], { cwd: `./${name}` })
-  log(
-    chalk.green(`
-      👌安装完成：
+  log('')
+  const ora = require('ora')
+  const process = ora(`🚘 Install Dependences ...`)
+  process.start()
+  try {
+    await spawn('npm', ['install'], { cwd: `./${name}` })
+    process.succeed()
+  } catch (error) {
+    process.fail()
+    logError(error, 'err') // Charph-log
+    return
+  }
+
+  log(`
+      👌 安装完成：
       To get Start:
       ===========================
       cd ${name}
       yarn dev:weapp
+      or
+      npm run dev:weapp
       ===========================
       `)
-  )
+
+  // 打开浏览器
+  // open(`http://localhost:8080`)
+  // await spawn('npm', ['run', 'serve'], { cwd: `./${name}` })
 }
