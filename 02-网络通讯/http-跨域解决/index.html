@@ -1,0 +1,33 @@
+<!--
+ * @moduleName: 模块名称
+ * @Author: D·Chaofeng
+ * @LastModifiedBy: D·Chaofeng
+ * @Date: 2019-05-05 15:32:17
+ * @LastEditTime: 2019-05-06 15:02:02
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>这是主页</h1>
+  </body>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    axios.defaults.withCredentials = true;
+    axios.defaults.baseURL = 'http://localhost:3000';
+    (async () => {
+      const result = await axios.get('/users', {
+        headers: {
+          'X-Token': '123'
+        }
+      });
+      console.log(result.data);
+    })();
+  </script>
+</html>
+111
