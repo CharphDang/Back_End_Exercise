@@ -8,6 +8,7 @@
 4. sso是单点登录的练习，实际还是通过token和cookie的机制
   - 不同域名之间会先走一个redirect重定向到 认证登录 页面来判断是否登录
 5. oauth是github的第三方授权练习
+  - [github oAuth官方文档](https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps)
 
 ### 收获
 

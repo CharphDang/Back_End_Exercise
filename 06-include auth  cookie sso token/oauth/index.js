@@ -61,7 +61,14 @@ router.get(
     // 验证通过，state.user
     console.log('jwt playload:', ctx.state.user)
     const access_token = accessTokens[ctx.state.user.data]
-    res = await axios.get('https://api.github.com/user?access_token=' + access_token)
+    console.log('access token:', access_token) // Charph-log
+    // res = await axios.get('https://api.github.com/user?access_token=' + access_token)
+    res = await axios.get('https://api.github.com/user', {
+      headers: {
+        Authorization: 'token ' + access_token
+      }
+    })
+
     console.log('userAccess:', res.data)
     ctx.body = res.data
   }
