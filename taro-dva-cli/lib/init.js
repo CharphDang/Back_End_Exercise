@@ -107,14 +107,33 @@ module.exports = async name => {
     logWarning('You dismiss the configuration just now')
   }
 
+  // 通过inquirer获取到用户输入的内容
+  const util = await inquirer.prompt([
+    {
+      type: 'list',
+      name: 'environment',
+      message: 'Your choice:',
+      choices: [
+        {
+          value: 1,
+          name: 'yarn'
+        },
+        {
+          value: 2,
+          name: 'npm'
+        }
+      ]
+    }
+  ])
+
   //  --------------------------------------------
   const ora = require('ora')
   const process = ora(`🚘 Install Dependences ...`)
   process.start()
   try {
-    if (shell.which('yarn')) {
+    if (util === 1) {
       await spawn('yarn', { cwd: `./${name}`, shell: true })
-    } else if (shell.which('npm')) {
+    } else {
       await spawn('npm', ['install'], { cwd: `./${name}`, shell: true })
     }
     process.succeed()
