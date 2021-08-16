@@ -125,13 +125,13 @@ module.exports = async name => {
       ]
     }
   ])
-
   //  --------------------------------------------
   const ora = require('ora')
   const process = ora(`🚘 Install Dependences ...`)
   process.start()
+
   try {
-    if (util === 1) {
+    if (util.environment === 1) {
       await spawn('yarn', { cwd: `./${name}`, shell: true })
     } else {
       await spawn('npm', ['install'], { cwd: `./${name}`, shell: true })
