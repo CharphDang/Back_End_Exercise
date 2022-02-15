@@ -12,7 +12,7 @@ const {
 } = require('./utils')
 const { clone } = require('./download')
 
-const REMOTE = 'https://gitee.com/chaofengdang/taro-dva-template.git'
+const REMOTE = 'https://gitee.com/charph/taro-dva-template.git'
 const BRANCH = 'master'
 
 module.exports = async name => {
